@@ -2,14 +2,18 @@ var jwt = require('jsonwebtoken');
 
 exports.signIn = function (user) {
     return jwt.sign(
-        { username: user.username, admin: user.admin },
+        { 
+            username: user.username, 
+            admin: user.admin 
+        },
         global.SALT_KEY,
         {
-            expiresInMinutes: 1440 // Expira em 24 horas
+            expiresIn: '24h'
         }
     );
 };
 
+//Intercepta as requisicoes
 exports.authorize = function (req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 

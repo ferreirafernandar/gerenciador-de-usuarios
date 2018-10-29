@@ -6,7 +6,7 @@ var routes = require('./routes/routes');
 
 var app = express();
 
-mongoose.connect(config.connectionString);
+mongoose.connect(config.connectionString, { useNewUrlParser: true, useCreateIndex: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
